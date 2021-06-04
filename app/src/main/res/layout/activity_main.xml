@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
 
     <FrameLayout
         android:id="@+id/flWrapper"
@@ -17,8 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/design_default_color_primary"
-        app:itemIconTint="@color/black"
+        android:background="@color/tealdark"
+        app:itemIconTint="@color/white"
         app:menu="@menu/nav_menu"/>
 
 </RelativeLayout>

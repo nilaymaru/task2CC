@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.practice1.R
 import com.example.practice1.model.UsersItem
 import kotlinx.android.synthetic.main.users_item.view.*
@@ -20,6 +21,7 @@ class UserAdapter: RecyclerView.Adapter<UserAdapter.MyViewHolder>(){
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.itemView.tvUserName.text = myList[position].login
+        Glide.with(holder.itemView.context).load(myList[position].avatar_url).into(holder.itemView.ivAvatar)
     }
 
     override fun getItemCount(): Int {

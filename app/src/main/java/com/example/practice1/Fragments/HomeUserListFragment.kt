@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.practice1.Adapters.UserAdapter
 import com.example.practice1.MainViewModel
@@ -18,23 +19,25 @@ import com.example.practice1.Repository.Repository
 import kotlinx.android.synthetic.main.fragment_home_user_list.*
 
 class HomeUserListFragment : Fragment() {
-    private lateinit var viewModel: MainViewModel
-    private var userAdapter = UserAdapter()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
+    private lateinit var viewModel: MainViewModel
+    private var userAdapter = UserAdapter()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         rvUserList.adapter = userAdapter
-        rvUserList.layoutManager = LinearLayoutManager(requireContext())
+        rvUserList.layoutManager = LinearLayoutManager(requireActivity())
+        rvUserList.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                LinearLayoutManager.HORIZONTAL
+            )
+        )
         val repository = Repository()
         val viewModelFactory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
@@ -48,6 +51,15 @@ class HomeUserListFragment : Fragment() {
                 Toast.makeText(requireContext(), response.code(), Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home_user_list, container, false)
 
